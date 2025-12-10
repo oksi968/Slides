@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 алгоритма сортировки на JavaScript</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .input-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #e9ecef;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .sorting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 25px;
+        }
+        
+        .sort-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .sort-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .complexity {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            background-color: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        
+        .sort-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .arrays-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .array-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .array-label {
+            font-weight: 600;
+            color: #34495e;
+            min-width: 120px;
+        }
+        
+        .array-values {
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            flex: 1;
+            word-break: break-all;
+        }
+        
+        .steps-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .step {
+            margin-bottom: 5px;
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .sorting-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>3 алгоритма сортировки на JavaScript</h1>
+        <p class="subtitle">Наглядное сравнение методов сортировки</p>
+        
+        <div class="input-section">
+            <label for="arrayInput">Введите массив чисел (через запятую):</label>
+            <input type="text" id="arrayInput" placeholder="5, 3, 8, 1, 2" value="5, 3, 8, 1, 2">
+            <button class="btn" onclick="runAllSorts()">Запустить сортировки</button>
+        </div>
+        
+        <div class="sorting-grid" id="sorting-container">
+
+        </div>
+        
+        <div class="footer">
+            <p>JavaScript программа с 3 алгоритмами сортировки и подробным решением</p>
+        </div>
+    </div>
+
+    <script>
+
+        const sortingAlgorithms = [
+            {
+                name: "Сортировка пузырьком",
+                description: "Многократный проход по массиву с попарным сравнением и обменом соседних элементов.",
+                complexity: "O(n²)",
+                function: bubbleSort
+            },
+            {
+                name: "Сортировка выбором",
+                description: "На каждом проходе находится минимальный элемент и помещается в начало отсортированной части.",
+                complexity: "O(n²)",
+                function: selectionSort
+            },
+            {
+                name: "Сортировка вставками",
+                description: "Элементы по одному перемещаются в отсортированную часть массива.",
+                complexity: "O(n²)",
+                function: insertionSort
+            }
+        ];
+
+
+        function bubbleSort(arr) {
+            const steps = [];
+            const sortedArray = [...arr];
+            const n = sortedArray.length;
+            let swapped;
+            
+            steps.push(`Начальный массив: [${sortedArray}]`);
+            
+            for (let i = 0; i < n - 1; i++) {
+                swapped = false;
+                steps.push(`\nПроход ${i + 1}:`);
+                
+                for (let j = 0; j < n - 1 - i; j++) {
+                    steps.push(`  Сравниваем ${sortedArray[j]} и ${sortedArray[j + 1]}`);
+                    
+                    if (sortedArray[j] > sortedArray[j + 1]) {
+                        steps.push(`  Меняем местами ${sortedArray[j]} и ${sortedArray[j + 1]}`);
+                        [sortedArray[j], sortedArray[j + 1]] = [sortedArray[j + 1], sortedArray[j]];
+                        swapped = true;
+                    }
+                    
+                    steps.push(`  Текущее состояние: [${sortedArray}]`);
+                }
+                
+                if (!swapped) {
+                    steps.push(`Массив уже отсортирован, завершаем`);
+                    break;
+                }
+            }
+            
+            steps.push(`\nИтоговый массив: [${sortedArray}]`);
+            return { sortedArray, steps };
+        }
+
+
+        function selectionSort(arr) {
+            const steps = [];
+            const sortedArray = [...arr];
+            const n = sortedArray.length;
+            
+            steps.push(`Начальный массив: [${sortedArray}]`);
+            
+            for (let i = 0; i < n - 1; i++) {
+                steps.push(`\nПроход ${i + 1}: Ищем минимальный элемент начиная с позиции ${i}`);
+                let minIndex = i;
+                
+                for (let j = i + 1; j < n; j++) {
+                    steps.push(`  Сравниваем ${sortedArray[j]} с текущим минимумом ${sortedArray[minIndex]}`);
+                    if (sortedArray[j] < sortedArray[minIndex]) {
+                        minIndex = j;
+                        steps.push(`  Новый минимум: ${sortedArray[minIndex]} на позиции ${minIndex}`);
+                    }
+                }
+                
+                if (minIndex !== i) {
+                    steps.push(`Меняем местами ${sortedArray[i]} (позиция ${i}) и ${sortedArray[minIndex]} (позиция ${minIndex})`);
+                    [sortedArray[i], sortedArray[minIndex]] = [sortedArray[minIndex], sortedArray[i]];
+                } else {
+                    steps.push(`Минимальный элемент уже на своём месте`);
+                }
+                
+                steps.push(`Текущее состояние: [${sortedArray}]`);
+            }
+            
+            steps.push(`\nИтоговый массив: [${sortedArray}]`);
+            return { sortedArray, steps };
+        }
+
+
+        function insertionSort(arr) {
+            const steps = [];
+            const sortedArray = [...arr];
+            const n = sortedArray.length;
+            
+            steps.push(`Начальный массив: [${sortedArray}]`);
+            
+            for (let i = 1; i < n; i++) {
+                const current = sortedArray[i];
+                steps.push(`\nПроход ${i}: Вставляем элемент ${current} с позиции ${i}`);
+                
+                let j = i - 1;
+                while (j >= 0 && sortedArray[j] > current) {
+                    steps.push(`  Передвигаем ${sortedArray[j]} с позиции ${j} на позицию ${j + 1}`);
+                    sortedArray[j + 1] = sortedArray[j];
+                    j--;
+                }
+                
+                sortedArray[j + 1] = current;
+                steps.push(`  Вставляем ${current} на позицию ${j + 1}`);
+                steps.push(`  Текущее состояние: [${sortedArray}]`);
+            }
+            
+            steps.push(`\nИтоговый массив: [${sortedArray}]`);
+            return { sortedArray, steps };
+        }
+
+
+        function runAllSorts() {
+            const input = document.getElementById('arrayInput').value;
+            const array = input.split(',').map(item => parseInt(item.trim())).filter(item => !isNaN(item));
+            
+            if (array.length === 0) {
+                alert('Введите корректный массив чисел! Пример: 5, 3, 8, 1, 2');
+                return;
+            }
+            
+
+            updateUI(array);
+        }
+
+
+        function updateUI(originalArray) {
+            const container = document.getElementById('sorting-container');
+            container.innerHTML = '';
+            
+            sortingAlgorithms.forEach((algorithm, index) => {
+                const result = algorithm.function(originalArray);
+                
+                container.innerHTML += `
+                    <div class="sort-card">
+                        <div class="sort-title">
+                            ${algorithm.name}
+                            <span class="complexity">${algorithm.complexity}</span>
+                        </div>
+                        <div class="sort-description">${algorithm.description}</div>
+                        
+                        <div class="arrays-container">
+                            <div class="array-row">
+                                <div class="array-label">Исходный массив:</div>
+                                <div class="array-values">[${originalArray.join(', ')}]</div>
+                            </div>
+                            <div class="array-row">
+                                <div class="array-label">Отсортированный:</div>
+                                <div class="array-values">[${result.sortedArray.join(', ')}]</div>
+                            </div>
+                        </div>
+                        
+                        <div class="steps-container">
+                            ${result.steps.map(step => `<div class="step">${step}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Добавляем обработчик Enter на поле ввода
+            document.getElementById('arrayInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    runAllSorts();
+                }
+            });
+            
+            // Запускаем сортировку для начального примера
+            runAllSorts();
+        });
+    </script>
+</body>
+</html>

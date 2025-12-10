@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор таблиц истинности логических операций</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .control-group {
+            width: 300px;
+            margin: 0 auto 30px auto;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #34495e;
+            text-align: center;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .operations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .operation-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .operation-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .operation-symbol {
+            font-size: 1.1em;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .operation-description {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+        
+        .truth-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .truth-table th {
+            background-color: #3498db;
+            color: white;
+            padding: 8px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #2980b9;
+        }
+        
+        .truth-table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .truth-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .operations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор таблиц истинности логических операций</h1>
+        <p class="subtitle">Динамическая генерация таблиц для 9 логических операций</p>
+        
+        <div class="control-group">
+            <label for="variableCount">Количество переменных:</label>
+            <select id="variableCount" onchange="generateAllTables()">
+                <option value="1">1 переменная (A)</option>
+                <option value="2" selected>2 переменные (A, B)</option>
+                <option value="3">3 переменные (A, B, C)</option>
+            </select>
+        </div>
+        
+        <div class="operations-grid" id="operations-container">
+
+        </div>
+        
+        <div class="footer">
+            <p>JavaScript программа, динамически генерирующая таблицы истинности</p>
+        </div>
+    </div>
+
+    <script>
+
+        const operations = [
+            {
+                name: "Конъюнкция",
+                symbol: "∧",
+                description: "Логическое И. Истинно только когда все операнды истинны.",
+                calculate: function(vars) {
+                    return vars.every(v => v === true);
+                }
+            },
+            {
+                name: "Дизъюнкция",
+                symbol: "∨",
+                description: "Логическое ИЛИ. Истинно если хотя бы один операнд истинен.",
+                calculate: function(vars) {
+                    return vars.some(v => v === true);
+                }
+            },
+            {
+                name: "Инверсия",
+                symbol: "¬",
+                description: "Логическое НЕ. Унарная операция - меняет значение на противоположное.",
+                calculate: function(vars) {
+                    return !vars[0];
+                }
+            },
+            {
+                name: "Импликация",
+                symbol: "→",
+                description: "Если A, то B. Ложна только когда A истинно, а B ложно.",
+                calculate: function(vars) {
+                    return !vars[0] || vars[1];
+                }
+            },
+            {
+                name: "Эквиваленция",
+                symbol: "↔",
+                description: "Тогда и только тогда. Истинна когда все операнды равны.",
+                calculate: function(vars) {
+                    for(let i = 1; i < vars.length; i++) {
+                        if(vars[i] !== vars[0]) return false;
+                    }
+                    return true;
+                }
+            },
+            {
+                name: "Исключающее ИЛИ",
+                symbol: "⊕",
+                description: "Истинна когда нечетное количество истинных операндов.",
+                calculate: function(vars) {
+                    let trueCount = vars.filter(v => v === true).length;
+                    return trueCount % 2 === 1;
+                }
+            },
+            {
+                name: "Условная дизъюнкция",
+                symbol: "∨ | ¬",
+                description: "A или B, если не A. Эквивалентна ¬A → B.",
+                calculate: function(vars) {
+                    return vars[0] || (!vars[0] && vars[1]);
+                }
+            },
+            {
+                name: "Стрелка Пирса",
+                symbol: "↓",
+                description: "НИ-НИ. Истинна только когда все операнды ложны.",
+                calculate: function(vars) {
+                    return vars.every(v => v === false);
+                }
+            },
+            {
+                name: "Штрих Шеффера",
+                symbol: "|",
+                description: "НЕ-И. Ложна только когда все операнды истинны.",
+                calculate: function(vars) {
+                    return !vars.every(v => v === true);
+                }
+            }
+        ];
+
+
+        function generateCombinations(n) {
+            const total = Math.pow(2, n);
+            const combinations = [];
+            
+            for (let i = 0; i < total; i++) {
+                const combination = [];
+                for (let j = 0; j < n; j++) {
+
+                    combination.push(!!(i & (1 << (n - j - 1))));
+                }
+                combinations.push(combination);
+            }
+            
+            return combinations;
+        }
+
+        function getVariableNames(count) {
+            const variables = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            return variables.slice(0, count);
+        }
+
+
+        function getOperationSymbol(operation, varNames) {
+            if (operation.symbol === '¬') {
+                return `${operation.symbol}${varNames[0]}`;
+            } else if (operation.symbol === '∨ | ¬') {
+                return `${varNames[0]} ∨ ${varNames[1]} | ¬${varNames[0]}`;
+            } else {
+                return varNames.join(` ${operation.symbol} `);
+            }
+        }
+
+
+        function generateOperationHTML(operation, varCount) {
+            const varNames = getVariableNames(varCount);
+            const combinations = generateCombinations(varCount);
+            const operationSymbol = getOperationSymbol(operation, varNames);
+            
+
+            let tableHTML = `<table class="truth-table">
+                <thead>
+                    <tr>`;
+            
+
+            varNames.forEach(name => {
+                tableHTML += `<th>${name}</th>`;
+            });
+            
+
+            tableHTML += `<th>${operationSymbol}</th></tr></thead><tbody>`;
+            
+
+            combinations.forEach(combination => {
+                const result = operation.calculate(combination);
+                
+                tableHTML += '<tr>';
+                
+
+                combination.forEach(value => {
+                    tableHTML += `<td>${value ? '1' : '0'}</td>`;
+                });
+                
+
+                tableHTML += `<td>${result ? '1' : '0'}</td>`;
+                
+                tableHTML += '</tr>';
+            });
+            
+            tableHTML += '</tbody></table>';
+            
+            return `
+                <div class="operation-card">
+                    <div class="operation-title">
+                        <span class="operation-symbol">${operation.symbol}</span>
+                        ${operation.name}
+                    </div>
+                    <div class="operation-description">${operation.description}</div>
+                    ${tableHTML}
+                </div>
+            `;
+        }
+
+
+        function generateAllTables() {
+            const container = document.getElementById('operations-container');
+            const varCount = parseInt(document.getElementById('variableCount').value);
+            
+            container.innerHTML = '';
+            
+            operations.forEach(operation => {
+  
+                const countForOperation = operation.symbol === '¬' ? 1 : varCount;
+                container.innerHTML += generateOperationHTML(operation, countForOperation);
+            });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateAllTables();
+        });
+    </script>
+</body>
+</html>
