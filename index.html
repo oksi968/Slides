@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,56 +24,21 @@
                 </textarea>
             </section>
 
-            <section data-markdown>
-                <textarea data-template>
-                    ### Навигация по презентации
-                    
-                    <div class="menu">
-                        <div class="menu-item">
-                            <a href="#/3">Логика высказываний</a>
-                        </div>
-						<div class="menu-item">
-                            <a href="#/4">Основные понятия логики высказываний</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/7">Логические операции</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/26">Таблицы истинности. Определение</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/27">Генератор таблиц</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/28">Алгоритмы: Определение</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/35">Алгоритмы сортировок</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/41">Программа для сортировки</a>
-                        </div>
-						<div class="menu-item">
-                            <a href="#/42">Мемы</a>
-                        </div>
-                        <div class="menu-item">
-                            <a href="#/46">Заключение</a>
-                        </div>
-                    </div>
-                </textarea>
-            </section>
-
-			<section class="center"><h1>Логика высказываний. Определения</h1></section>
+			<section class="center" data-menu-title="Логика высказываний. Определения">
+				<h1>Логика высказываний. Определения</h1>
+			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Определение Логики высказывания">
                 <textarea data-template>
 **Логика высказываний** — это фундаментальный раздел формальной логики, изучающий логические связи между **простыми высказываниями** и способы построения из них **сложных (составных) высказываний** с помощью **логических операций**.
                 </textarea>
 			</section>
 			
-			<section class="center"><h1>Основные понятия</h1></section>
+			<section class="center" data-menu-title="Основные понятия">
+				<h1>Основные понятия</h1>
+			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Простое высказывание">
                 <textarea data-template>
 ### Простое высказывание
 Это **декларативное утверждение**, которое может быть либо **истинным (true, 1)**, либо **ложным (false, 0)**, но не тем и другим одновременно.
@@ -86,7 +50,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Составное высказывание">
                 <textarea data-template>
 ### Составное (сложное) высказывание
 Формируется из простых высказываний с помощью **логических связок** (операций).
@@ -95,7 +59,7 @@
                 </textarea>
 			</section>
 
-            <section data-markdown>
+            <section data-markdown data-menu-title="Логические операции">
                 <textarea data-template>
                     ## Логические операции
                     
@@ -111,8 +75,8 @@
                 </textarea>
             </section>
 		
-			<section data-markdown="markdown/conjunction.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/conjunction.md" data-menu-title="Конъюнкция"></section>
+			<section data-markdown data-menu-title="Пример конъюнкции">
                 <textarea data-template>
 **Пример:**
 - A: «Я купил хлеб»
@@ -121,8 +85,8 @@
 Тогда конъюнкция **A ∧ B** («Я купил хлеб и молоко») будет истинна только в одном случае: если я действительно купил и то, и другое. Если я купил только хлеб, только молоко или ничего не купил — высказывание ложно.
                 </textarea>
 			</section>
-			<section data-markdown="markdown/disjunction.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/disjunction.md" data-menu-title="Дизъюнкция"></section>
+			<section data-markdown data-menu-title="Пример дизъюнкции">
                 <textarea data-template>
 **Пример:**
 - A: «Сегодня идет дождь»
@@ -131,8 +95,8 @@
 Тогда дизъюнкция **A ∨ B** («Сегодня идет дождь или светит солнце») истинна, если выполнено хотя бы одно условие — идет дождь ИЛИ светит солнце (включая случай, когда верно и то, и другое).
                 </textarea>
 			</section>
-			<section data-markdown="markdown/Equivalence.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/Equivalence.md" data-menu-title="Эквиваленция"></section>
+			<section data-markdown data-menu-title="Пример эквиваленции">
                 <textarea data-template>
 **Пример:**
 - A: «Число четное»
@@ -141,8 +105,8 @@
 Эквиваленция **A ↔ B** («Число четное тогда и только тогда, когда оно делится на 2») истинна всегда, так как эти утверждения неразличимы по смыслу.
 			</textarea>
 </section>
-			<section data-markdown="markdown/Inversion.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/Inversion.md" data-menu-title="Инверсия"></section>
+			<section data-markdown data-menu-title="Пример инверсии">
                 <textarea data-template>
 **Пример:**
 - A: «На улице тепло»
@@ -150,8 +114,8 @@
 Тогда инверсия **¬A** («На улице **не** тепло») будет истинна, когда на улице холодно, и ложна, когда на улице тепло.
                 </textarea>
 			</section>
-			<section data-markdown="markdown/Implication.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/Implication.md" data-menu-title="Импликация"></section>
+			<section data-markdown data-menu-title="Пример импликации">
                 <textarea data-template>
 **Пример:**
 - A: «Ты сдал экзамен»
@@ -160,8 +124,8 @@
 Импликация **A → B** («Если ты сдал экзамен, то получишь стипендию») будет ложной только если ты экзамен сдал, но стипендию не получил. Если экзамен не сдан (A ложно), то обещание не нарушено, независимо от того, получил ты стипендию или нет.
                 </textarea>
 			</section>
-			<section data-markdown="markdown/ExclusiveOR.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/ExclusiveOR.md" data-menu-title="Исключающее ИЛИ"></section>
+			<section data-markdown data-menu-title="Пример исключающего ИЛИ">
                 <textarea data-template>
 **Пример:**
 - A: «Пойду в кино»
@@ -170,8 +134,8 @@
 **A ⊕ B** («Пойду или в кино, или в театр») будет истинным, если я выберу что-то одно. Оно будет ложным, если я пойду в оба места (и кино, и театр) или не пойду никуда.
                 </textarea>
 			</section>
-			<section data-markdown="markdown/ConditionalDisjunction.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/ConditionalDisjunction.md" data-menu-title="Условная дизъюнкция"></section>
+			<section data-markdown data-menu-title="Пример условной дизъюнкции">
                 <textarea data-template>
 **Пример:**
 - A: «Идет прямой поезд»
@@ -180,8 +144,8 @@
 «A или B, если не A»: «Поеду прямым поездом, **а если его нет** (не A), то сделаю пересадку (B)». Ложь будет только в случае, когда прямого поезда нет (¬A истинно), но пересадку я делать не буду (B ложно).
                 </textarea>
 			</section>
-			<section data-markdown="markdown/PeirceArrow.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/PeirceArrow.md" data-menu-title="Стрелка Пирса"></section>
+			<section data-markdown data-menu-title="Пример стрелки Пирса">
                 <textarea data-template>
 **Пример:**
 - A: «Завтра будет дождь»
@@ -190,8 +154,8 @@
 **A ↓ B** («Ни завтра не будет дождя, ни снега») будет истинно только в ясный, сухой день. Если выпадут любые осадки, высказывание станет ложным.
                 </textarea>
 			</section>
-			<section data-markdown="markdown/ShefferStroke.md"></section>
-						<section data-markdown>
+			<section data-markdown="markdown/ShefferStroke.md" data-menu-title="Штрих Шеффера"></section>
+			<section data-markdown data-menu-title="Пример штриха Шеффера">
                 <textarea data-template>
 **Пример:**
 - A: «Дверь закрыта»
@@ -201,29 +165,33 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown="markdown/truthTable.md"></section>
+			<section data-markdown="markdown/truthTable.md" data-menu-title="Таблицы истинности. Определение"></section>
 
-			<section data-fullscreen data-menu-title="Таблицы истинности">
+			<section data-fullscreen data-menu-title="Генератор таблиц истинности">
 				<iframe data-src="html/table.html" class="stretch"></iframe>
 			</section>
 
-			<section class="center"><h1>Алгоритмы. Определения</h1></section>
+			<section class="center" data-menu-title="Алгоритмы. Определения">
+				<h1>Алгоритмы. Определения</h1>
+			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Определение алгоритма">
                 <textarea data-template>
 **Алгоритм** — это конечная, точная, детерминированная последовательность инструкций (шагов), предназначенная для решения конкретного класса задач или выполнения вычислений. 
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Определение сложности алгоритма">
                 <textarea data-template>
 **Сложность алгоритма** — это количественная характеристика, описывающая зависимость ресурсов (времени выполнения или используемой памяти), необходимых алгоритму, от размера входных данных.
                 </textarea>
 			</section>
 			
-			<section class="center"><h1>Виды сложности</h1></section>
+			<section class="center" data-menu-title="Виды сложности">
+				<h1>Виды сложности</h1>
+			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Временная сложность">
                 <textarea data-template>
 **Временная сложность (Time Complexity)**
 Оценивает количество элементарных операций, выполняемых алгоритмом. Измеряется в "нотации О большого" (Big O notation)
@@ -235,7 +203,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Пространственная сложность">
                 <textarea data-template>
 **Пространственная сложность (Space Complexity)**
 Оценивает объем памяти, требуемый алгоритмом. Также измеряется в нотации О большого.
@@ -246,7 +214,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Асимптотическая сложность">
                 <textarea data-template>
 **Асимптотическая сложность**
 Описывает поведение алгоритма при стремлении размера входных данных к бесконечности.
@@ -254,13 +222,15 @@
 Основные асимптотические обозначения:
   - O(f(n)) — верхняя граница (худший случай)
   - Ω(f(n)) — нижняя граница (лучший случай)
-  - Θ(f(n)) — точная оценка (совпадают верхняя и нижняя границы)
+  - Θ(f(n)) — точная оценку (совпадают верхняя и нижняя границы)
                 </textarea>
 			</section>
 			
-			<section class="center"><h1>Алгоритмы сортировок</h1></section>
+			<section class="center" data-menu-title="Алгоритмы сортировок">
+				<h1>Алгоритмы сортировок</h1>
+			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Сортировка пузырьком">
                 <textarea data-template>
 ### Сортировка пузырьком (Bubble Sort)
 - **Принцип:** Многократный проход по массиву с попарным сравнением и обменом соседних элементов
@@ -270,7 +240,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Сортировка выбором">
                 <textarea data-template>
 ### Сортировка выбором (Selection Sort)
 - **Принцип:** На каждом проходе находится минимальный элемент и помещается в начало отсортированной части
@@ -280,7 +250,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Сортировка вставками">
                 <textarea data-template>
 ### Сортировка вставками (Insertion Sort)
 - **Принцип:** Элементы по одному перемещаются в отсортированную часть массива
@@ -290,7 +260,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Быстрая сортировка">
                 <textarea data-template>
 ### Быстрая сортировка (Quick Sort)
 - **Принцип:** Разделение массива на две части относительно опорного элемента и рекурсивная сортировка частей
@@ -300,7 +270,7 @@
                 </textarea>
 			</section>
 			
-			<section data-markdown>
+			<section data-markdown data-menu-title="Сортировка слиянием">
                 <textarea data-template>
 ### Сортировка слиянием (Merge Sort)
 - **Принцип:** Рекурсивное разделение массива пополам, сортировка частей и их слияние
@@ -310,22 +280,24 @@
                 </textarea>
 			</section>
 
-			<section data-fullscreen data-menu-title="Демо: Алгоритмы сортировки">
+			<section data-fullscreen data-menu-title="Программа для сортировки">
 				<iframe data-src="html/sort.html" class="stretch"></iframe>
 			</section>
 
-			<section class="center"><h1>Мемы</h1></section>
-			<section>
+			<section class="center" data-menu-title="Мемы">
+				<h1>Мемы</h1>
+			</section>
+			<section data-menu-title="Мем 1">
 					<img src="img/мем.jpg" height="650px">
 				</section>
-			<section>
+			<section data-menu-title="Мем 2">
 					<img src="img/мем2.jpg" height="650px">
 				</section>
-			<section>
+			<section data-menu-title="Мем 3">
 					<img src="img/загрузка (11).jpg" height="650px">
 				</section>
 
-            <section data-markdown>
+            <section data-markdown data-menu-title="Заключение">
                 <textarea data-template>
                     ## Спасибо за внимание!
                 </textarea>
@@ -343,54 +315,25 @@
     <script>
         Reveal.initialize({
             hash: true,
-            plugins: [ RevealMarkdown, RevealHighlight ],
+            center: false,
             slideNumber: true,
             controls: true,
             progress: true,
-            transition: 'convex'
+            transition: 'convex',
+            dependencies:[
+                {
+                    src: 'plugin/menu/menu.js'
+                },
+                {
+                    src:'plugin/fullscreen/fullscreen.js'
+                },
+            ],
+            menu:{
+                number: true,
+                markers: true,
+            },
+            plugins: [ RevealMarkdown, RevealHighlight ]
         });
     </script>
 </body>
 </html>
-=======
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-		<title>reveal.js</title>
-
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
-
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Слайд 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
-
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
-
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
-</html>
->>>>>>> 6cbd389a4ba1e07e4bcfa13ecacb59782be22eea

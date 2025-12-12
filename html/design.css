@@ -1,221 +1,670 @@
-
 html, body {
-    background-color: #fff0f5 !important; 
+    background-color: #fff0f5 !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .reveal {
     background-color: transparent !important;
     color: #000000 !important;
     font-family: 'Segoe UI', Tahoma, sans-serif !important;
-}
-
-
-.reveal h1 {
-    color: #000000 !important;
-    font-size: 2em !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.2em !important;
-    line-height: 1.1 !important;
-    text-shadow: none !important;
-}
-
-.reveal h2 {
-    color: #000000 !important;
-    font-size: 1.6em !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.2em !important;
-    line-height: 1.1 !important;
-    text-shadow: none !important;
-}
-
-.reveal h3 {
-    color: #000000 !important;
-    font-size: 1.3em !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.2em !important;
-    line-height: 1.1 !important;
-    text-shadow: none !important;
-}
-
-
-.reveal p {
-    font-size: 1em !important;
-    line-height: 1.3 !important;
-    margin-bottom: 0.4em !important;
-    color: #000000 !important;
-    text-shadow: none !important;
-}
-
-.reveal li {
-    font-size: 0.95em !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.1em !important;
-    color: #000000 !important;
-    text-shadow: none !important;
-}
-
-
-.center h1 {
-    text-align: center !important;
-}
-
-.menu {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    margin-top: 15px !important;
-}
-
-.menu-item {
-    padding: 5px !important;
-    text-align: center !important;
-    background: transparent !important;
-    border: none !important;
-}
-
-.menu-item a {
-    color: #333333 !important;
-    text-decoration: none !important;
-    font-size: 0.9em !important;
-    font-weight: normal !important;
-    display: block !important;
-}
-
-.menu-item a:hover {
-    color: #000000 !important;
-    text-decoration: underline !important;
-}
-
-
-.stretch {
     width: 100% !important;
-    height: 75vh !important;
-    border: none !important;
-    background: white !important;
+    height: 100vh !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
-
+/* ОСНОВНОЕ ИСПРАВЛЕНИЕ: Убираем прокрутку, делаем адаптивный масштаб */
 .reveal .slides {
     background: transparent !important;
     text-align: left !important;
-    padding: 5px !important;
+    width: 100% !important;
+    height: 100vh !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
 }
 
+/* ИСПРАВЛЕНИЕ: Уменьшаем тексты, убираем прокрутку */
 .reveal .slides section {
     background: transparent !important;
-    padding: 10px 15px !important;
+    padding: 30px 50px !important;
     box-shadow: none !important;
     border: none !important;
+    width: 100% !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    max-height: 90vh !important;
+    min-height: auto !important;
 }
 
-
-.reveal .slides section::before,
-.reveal .slides section::after {
-    display: none !important;
+/* ВАЖНОЕ ИСПРАВЛЕНИЕ: ТИТУЛЬНЫЙ СЛАЙД - ПРОСТОЕ И НАДЕЖНОЕ ЦЕНТРИРОВАНИЕ */
+.reveal .slides section:first-child {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Центрируем по вертикали */
+    align-items: center !important; /* Центрируем по горизонтали */
+    height: 100vh !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
 }
 
+/* КОНТЕЙНЕР ДЛЯ ЦЕНТРИРОВАНИЯ ТЕКСТА НА ТИТУЛЬНОМ СЛАЙДЕ */
+.reveal .slides section:first-child > * {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    max-width: 90% !important;
+}
+
+/* Главный заголовок презентации на первом слайде */
+.reveal .slides section:first-child h1 {
+    font-size: 2.5em !important;
+    font-weight: 700 !important;
+    margin: 0 auto 0.3em auto !important;
+    line-height: 1.1 !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Подзаголовок на титульном слайде */
+.reveal .slides section:first-child h2 {
+    font-size: 1.8em !important;
+    font-weight: 600 !important;
+    margin: 0 auto 0.5em auto !important;
+    line-height: 1.1 !important;
+    color: #333333 !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Автор/дата на титульном слайде */
+.reveal .slides section:first-child h3 {
+    font-size: 1.4em !important;
+    font-weight: 400 !important;
+    margin: 1em auto 0 auto !important;
+    color: #666666 !important;
+    font-style: italic !important;
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* СТИЛИ ДЛЯ СЛАЙДОВ С IFRAME (таблицы, сортировка) */
+.reveal .slides section[data-fullscreen],
+.reveal .slides section.with-iframe {
+    padding: 10px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+}
+
+/* ИСПРАВЛЕНИЕ: Адаптивные стили для iframe */
+.reveal .slides section iframe.stretch {
+    width: 100% !important;
+    height: 90vh !important;
+    min-height: 400px !important;
+    border: none !important;
+    background: white !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    margin: 0 auto !important;
+    display: block !important;
+    border: 2px solid #e0e0e0 !important;
+}
+
+/* Особые стили для центрированных слайдов */
+.reveal .slides section.center,
+.reveal .slides section[data-menu-title*="Заключение"],
+.reveal .slides section[data-menu-title*="Основные понятия"],
+.reveal .slides section[data-menu-title*="Логика высказываний"],
+.reveal .slides section[data-menu-title*="Алгоритмы"],
+.reveal .slides section[data-menu-title*="Виды сложности"],
+.reveal .slides section[data-menu-title*="Алгоритмы сортировок"] {
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding-top: 40px !important;
+}
+
+/* Стили для слайдов с мемами */
+.reveal .slides section[data-menu-title*="Мемы"],
+.reveal .slides section[data-menu-title*="Мем"] {
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 10px !important;
+    overflow: hidden !important;
+}
+
+.reveal .slides section[data-menu-title*="Мем"] img {
+    max-height: 80vh !important;
+    max-width: 90% !important;
+    height: auto !important;
+    width: auto !important;
+    margin: 0 auto !important;
+    display: block !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* СТИЛИ ДЛЯ ОСТАЛЬНЫХ СЛАЙДОВ (не титульных) */
+.reveal .slides section:not(:first-child) h1 {
+    color: #000000 !important;
+    font-size: 1.8em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.4em !important;
+    line-height: 1.1 !important;
+    text-shadow: none !important;
+    width: 100% !important;
+}
+
+.reveal .slides section:not(:first-child) h2 {
+    color: #000000 !important;
+    font-size: 1.5em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.3em !important;
+    line-height: 1.1 !important;
+    text-shadow: none !important;
+    width: 100% !important;
+}
+
+.reveal .slides section:not(:first-child) h3 {
+    color: #000000 !important;
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.2em !important;
+    line-height: 1.1 !important;
+    text-shadow: none !important;
+    width: 100% !important;
+}
+
+/* Уменьшаем отступы и размеры для текста на остальных слайдах */
+.reveal .slides section:not(:first-child) p {
+    font-size: 0.9em !important;
+    line-height: 1.2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+    width: 100% !important;
+}
+
+.reveal .slides section:not(:first-child) li {
+    font-size: 0.85em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.2em !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+/* Уменьшаем отступы для списков на остальных слайдах */
+.reveal .slides section:not(:first-child) ul,
+.reveal .slides section:not(:first-child) ol {
+    margin-top: 0.2em !important;
+    margin-bottom: 0.5em !important;
+    margin-left: 15px !important;
+    width: 100% !important;
+    padding-left: 5px !important;
+}
+
+.reveal .slides section:not(:first-child) ul ul,
+.reveal .slides section:not(:first-child) ol ol {
+    margin-top: 0.1em !important;
+    margin-bottom: 0.2em !important;
+    margin-left: 10px !important;
+}
+
+/* Стили для меню плагина Reveal.js */
+.reveal .slide-menu {
+    background-color: rgba(255, 240, 245, 0.95) !important;
+    color: #000000 !important;
+    font-family: 'Segoe UI', Tahoma, sans-serif !important;
+}
+
+.reveal .slide-menu .panel-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.reveal .slide-menu ul {
+    color: #000000 !important;
+}
+
+.reveal .slide-menu li {
+    color: #000000 !important;
+}
+
+.reveal .slide-menu a {
+    color: #333333 !important;
+    text-decoration: none !important;
+    font-weight: normal !important;
+}
+
+.reveal .slide-menu a:hover {
+    color: #000000 !important;
+    text-decoration: underline !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Стили для кнопки меню */
+.reveal .slide-menu-button {
+    color: #333333 !important;
+    opacity: 0.8 !important;
+}
+
+.reveal .slide-menu-button:hover {
+    color: #000000 !important;
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Стили для прогресс-бара и элементов управления */
 .reveal .progress {
-
     background: rgba(0,0,0,0.1) !important;
-    height: 2px !important;
+    height: 3px !important;
+    z-index: 1000 !important;
 }
 
+.reveal .progress span {
+    background: #333333 !important;
+}
 
 .reveal .controls {
     font-size: 0.7em !important;
     color: #333333 !important;
+    z-index: 1000 !important;
 }
 
+.reveal .controls button {
+    color: #333333 !important;
+    opacity: 0.7 !important;
+}
+
+.reveal .controls button:hover {
+    color: #000000 !important;
+    opacity: 1 !important;
+}
 
 .reveal .slide-number {
- 
     font-size: 0.8em !important;
     color: #333333 !important;
-    background: rgba(255,255,255,0.7) !important;
-    padding: 2px 6px !important;
+    background: rgba(255,255,255,0.8) !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    z-index: 1000 !important;
 }
 
-
-.reveal ul, .reveal ol {
-    margin-left: 15px !important;
-    margin-bottom: 10px !important;
-}
-
-.reveal ul ul, .reveal ol ol {
-    margin-left: 10px !important;
-}
-
+/* Стили для кода */
 .reveal code {
     font-family: 'Consolas', monospace !important;
     color: #c7254e !important;
     background: rgba(0,0,0,0.03) !important;
     padding: 1px 3px !important;
-    font-size: 0.9em !important;
+    font-size: 0.8em !important;
+    border-radius: 2px !important;
 }
 
 .hljs {
     background: #f5f5f5 !important;
     color: #333 !important;
-    font-size: 0.85em !important;
+    font-size: 0.75em !important;
     line-height: 1.1 !important;
-    padding: 5px !important;
-    border-radius: 0 !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ddd !important;
+    margin-bottom: 0.5em !important;
 }
 
+/* Класс для еще большего уменьшения контента (если нужно) */
+.reveal .slides section.compact-content h1 {
+    font-size: 1.6em !important;
+    margin-bottom: 0.3em !important;
+}
 
+.reveal .slides section.compact-content h2 {
+    font-size: 1.3em !important;
+    margin-bottom: 0.2em !important;
+}
+
+.reveal .slides section.compact-content h3 {
+    font-size: 1.1em !important;
+    margin-bottom: 0.1em !important;
+}
+
+.reveal .slides section.compact-content p {
+    font-size: 0.8em !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.4em !important;
+}
+
+.reveal .slides section.compact-content li {
+    font-size: 0.75em !important;
+    line-height: 1 !important;
+    margin-bottom: 0.15em !important;
+}
+
+.reveal .slides section.compact-content ul,
+.reveal .slides section.compact-content ol {
+    margin-bottom: 0.4em !important;
+}
+
+/* Автоматическое уменьшение для очень длинного контента */
+.reveal .slides section.auto-compact {
+    transform: scale(0.95);
+    transform-origin: center center;
+}
+
+/* Медиа-запросы для мобильных устройств */
 @media (max-width: 768px) {
-    .menu {
-        grid-template-columns: 1fr !important;
-        gap: 5px !important;
+    /* Титульный слайд на мобильных */
+    .reveal .slides section:first-child h1 {
+        font-size: 1.8em !important;
+        margin-bottom: 0.2em !important;
     }
     
-    .menu-item a {
+    .reveal .slides section:first-child h2 {
+        font-size: 1.4em !important;
+        margin-bottom: 0.3em !important;
+    }
+    
+    .reveal .slides section:first-child h3 {
+        font-size: 1.1em !important;
+        margin-top: 0.8em !important;
+    }
+    
+    /* Остальные слайды на мобильных */
+    .reveal .slides section:not(:first-child) {
+        padding: 15px 25px !important;
+        max-width: 95% !important;
+    }
+    
+    .reveal .slides section[data-fullscreen],
+    .reveal .slides section.with-iframe {
+        padding: 5px !important;
+    }
+    
+    .reveal .slides section iframe.stretch {
+        height: 85vh !important;
+        min-height: 350px !important;
+    }
+    
+    .reveal .slides section:not(:first-child) h1 {
+        font-size: 1.4em !important;
+        margin-bottom: 0.3em !important;
+    }
+    
+    .reveal .slides section:not(:first-child) h2 {
+        font-size: 1.2em !important;
+        margin-bottom: 0.2em !important;
+    }
+    
+    .reveal .slides section:not(:first-child) h3 {
+        font-size: 1em !important;
+        margin-bottom: 0.1em !important;
+    }
+    
+    .reveal .slides section:not(:first-child) p {
+        font-size: 0.85em !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.4em !important;
+    }
+    
+    .reveal .slides section:not(:first-child) li {
+        font-size: 0.8em !important;
+        line-height: 1 !important;
+        margin-bottom: 0.15em !important;
+    }
+    
+    .reveal .slides section[data-menu-title*="Мем"] img {
+        max-height: 75vh !important;
+        max-width: 95% !important;
+    }
+    
+    /* Уменьшаем меню на мобильных */
+    .reveal .slide-menu {
         font-size: 0.85em !important;
     }
     
-    .reveal h1 {
+    .reveal code {
+        font-size: 0.75em !important;
+    }
+    
+    .hljs {
+        font-size: 0.7em !important;
+        padding: 6px !important;
+    }
+}
+
+/* Для очень маленьких экранов или большого количества контента */
+@media (max-height: 600px) {
+    .reveal .slides section:not(:first-child) {
+        padding: 20px 40px !important;
+    }
+    
+    .reveal .slides section:first-child h1 {
+        font-size: 2em !important;
+    }
+    
+    .reveal .slides section:first-child h2 {
+        font-size: 1.5em !important;
+    }
+    
+    .reveal .slides section:first-child h3 {
+        font-size: 1.2em !important;
+    }
+    
+    .reveal .slides section:not(:first-child) h1 {
         font-size: 1.6em !important;
     }
     
-    .reveal h2 {
+    .reveal .slides section:not(:first-child) h2 {
         font-size: 1.3em !important;
     }
     
-    .reveal h3 {
+    .reveal .slides section:not(:first-child) h3 {
         font-size: 1.1em !important;
     }
     
-    .reveal p {
-        font-size: 0.9em !important;
-    }
-    
-    .reveal li {
+    .reveal .slides section:not(:first-child) p {
         font-size: 0.85em !important;
     }
     
-    .stretch {
-        height: 60vh !important;
-    }
-    
-    .reveal .slides section {
-        padding: 5px 8px !important;
+    .reveal .slides section:not(:first-child) li {
+        font-size: 0.8em !important;
     }
 }
 
+/* Автоматическое уменьшение шрифта в зависимости от высоты */
+@media (max-height: 500px) {
+    .reveal .slides section:not(:first-child) {
+        transform: scale(0.9);
+        transform-origin: center center;
+    }
+}
 
+/* Убираем конфликты с темой Reveal */
+#theme {
+    display: none !important;
+}
+
+/* Удаляем старые стили для меню */
+.reveal .slides section .menu,
+.reveal .slides section .menu-item {
+    display: none !important;
+}
+
+/* Дополнительные стили для центрирования контента */
+.reveal .slides section > * {
+    max-width: 100% !important;
+}
+
+/* Исправляем отступы для markdown контента */
+.reveal .slides section[data-markdown] {
+    display: block !important;
+}
+
+.reveal .slides section[data-markdown] textarea {
+    display: none !important;
+}
+
+/* Центрирование содержимого markdown слайдов */
+.reveal .slides section[data-markdown]:first-child > div {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Общие стили для контейнера */
 .reveal .slides section[data-background],
 .reveal .slides section[data-state] {
     background: transparent !important;
 }
 
-
+/* Стили для фрагментов */
 .reveal .slides section .fragment {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
 }
 
-
+/* Основной контейнер */
 .reveal-viewport {
     background-color: #fff0f5 !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
+
+/* Стиль для аккуратных блоков */
+.reveal .slides section .tight-block {
+    margin-bottom: 0.3em !important;
+}
+
+.reveal .slides section .tight-list {
+    margin-top: 0.1em !important;
+    margin-bottom: 0.3em !important;
+}
+
+/* Стиль для уменьшенных изображений в контенте */
+.reveal .slides section img:not([data-menu-title*="Мем"]) {
+    max-height: 40vh !important;
+    max-width: 80% !important;
+    margin: 0.3em auto !important;
+}
+
+/* Стиль для таблиц - уменьшаем */
+.reveal table {
+    font-size: 0.8em !important;
+    margin: 0.3em auto !important;
+    border-collapse: collapse !important;
+}
+
+.reveal table th,
+.reveal table td {
+    padding: 4px 8px !important;
+    border: 1px solid #ddd !important;
+}
+
+/* Убираем все полосы прокрутки */
+.reveal .slides section::-webkit-scrollbar {
+    display: none !important;
+}
+
+.reveal .slides section {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+}
+
+/* Анимация для красивого появления на титульном слайде */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal .slides section:first-child h1 {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.reveal .slides section:first-child h2 {
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.reveal .slides section:first-child h3 {
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+/* АЛЬТЕРНАТИВНЫЙ ВАРИАНТ ЦЕНТРИРОВАНИЯ - если предыдущий не сработает */
+.reveal .slides section.title-slide {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: 100vh !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.reveal .slides section.title-slide h1 {
+    position: relative !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ДОПОЛНИТЕЛЬНЫЙ КОД ДЛЯ ТОЧНОГО ЦЕНТРИРОВАНИЯ ТИТУЛЬНОГО СЛАЙДА */
+.reveal .slides > section:first-child {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.reveal .slides > section:first-child .title-content {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}ы
